@@ -7,6 +7,10 @@ import './index.css';
 import Home from './Home';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Reagentes from './Reagentes';
+import Estoque from './Estoque';
+import Rastreabilidade from './Rastreabilidade';
+import Temperatura from './Temperatura'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +20,11 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />
+        <Route path='/reagentes' element={<Reagentes></Reagentes>} />
+        <Route path='/estoque' element={<Estoque></Estoque>} />
+        <Route path='/rastreabilidade' element={<Rastreabilidade></Rastreabilidade>} />
+        <Route path='/temperatura' element={<Temperatura></Temperatura>} />
+
       </Routes>
     </BrowserRouter>
   </Theme>
