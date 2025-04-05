@@ -84,7 +84,6 @@ export default function AddReagentDialog({ onAdd }) {
                 Categoria
               </Text>
               <TextField.Root
-                placeholder="Ex: Bioquímica"
                 name="category"
                 value={form.category}
                 onChange={handleChange}
@@ -96,7 +95,6 @@ export default function AddReagentDialog({ onAdd }) {
                 Nome do reagente
               </Text>
               <TextField.Root
-                placeholder="Ex: Uréia"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
