@@ -67,7 +67,7 @@ export default function AddReagentDialog({ onAdd }) {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button>
-          <PlusIcon /> Add. reagentes
+          <PlusIcon className="text-xl " /> Add. reagentes
         </Button>
       </Dialog.Trigger>
 

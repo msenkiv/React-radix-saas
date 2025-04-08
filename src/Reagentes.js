@@ -38,7 +38,7 @@ export default function Reagentes() {
     },
     {
       category: "Urianálise",
-      name: "Fita de pH",
+      name: "Fitas reagentes",
       user: "Marvin S.",
       expiration: "20/06/2025",
       createdAt: "22/02/2025 11:15",
@@ -60,7 +60,7 @@ export default function Reagentes() {
         <Flex justify="between" align="center" className="mb-4">
           <Text
             color="blue"
-            className="ml-3 cursor-pointer"
+            className="ml-3 cursor-pointer text-xl"
             size="2"
             onClick={goHome}
           >
@@ -73,22 +73,22 @@ export default function Reagentes() {
         <Table.Root>
           <Table.Header>
             <Table.Row>
-              <Table.ColumnHeaderCell>Categoria</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Nome</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Usuário</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Vencimento</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Cadastro</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="text-xl">Categoria</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="text-xl">Nome</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="text-xl">Usuário</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="text-xl">Vencimento</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="text-xl">Cadastro</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
             {reagents.map((item, index) => (
-              <Table.Row key={index}>
-                <Table.RowHeaderCell>{item.category}</Table.RowHeaderCell>
-                <Table.Cell>{item.name}</Table.Cell>
-                <Table.Cell>{item.user}</Table.Cell>
-                <Table.Cell>{item.expiration}</Table.Cell>
-                <Table.Cell>{item.createdAt}</Table.Cell>
+              <Table.Row key={index} className="text-xl">
+                <Table.RowHeaderCell className="text-xl">{item.category}</Table.RowHeaderCell>
+                <Table.Cell className="text-xl">{item.name}</Table.Cell>
+                <Table.Cell className="text-xl">{item.user}</Table.Cell>
+                <Table.Cell className="text-xl">{item.expiration}</Table.Cell>
+                <Table.Cell className="text-xl">{item.createdAt}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

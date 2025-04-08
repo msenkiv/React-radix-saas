@@ -8,6 +8,23 @@ import bioImg from "./images/bioquimica.png";
 import urinaImg from "./images/urianalise.png";
 import microImg from "./images/microbiologia.png";
 
+const isExpiringSoon = (dateStr) => {
+  const today = new Date();
+  const targetDate = new Date(dateStr.split("/").reverse().join("-"));
+  const diffInDays = Math.ceil(
+    (targetDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return diffInDays <= 30 && diffInDays >= 0;
+};
+
+const getDaysUntil = (dateStr) => {
+  const today = new Date();
+  const targetDate = new Date(dateStr.split("/").reverse().join("-"));
+  return Math.ceil(
+    (targetDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+  );
+};
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -22,26 +39,43 @@ export default function Home() {
     { label: "Microbiologia", image: microImg },
   ];
 
-  const [expiredReagents, setExpiredReagents] = useState([
+  // Cálculo de datas futuras
+  const today = new Date();
+  const addDays = (days) => {
+    const future = new Date(today);
+    future.setDate(today.getDate() + days);
+    return future.toISOString().split("T")[0].split("-").reverse().join("/");
+  };
+
+  const [reagents, setReagents] = useState([
     {
       id: 1,
       name: "Uréia",
       category: "Bioquímica",
-      expiredAt: "10/04/2025",
-      user: "Marvin S.",
+      expiresAt: addDays(30),
+      user: "Marcos S.",
     },
     {
       id: 2,
       name: "Ágar sangue",
       category: "Microbiologia",
-      expiredAt: "05/04/2025",
+      expiresAt: addDays(27),
       user: "Lucas M.",
+    },
+    {
+      id: 3,
+      name: "Hemoglobina",
+      category: "Hematologia",
+      expiresAt: addDays(23),
+      user: "Giovana B.",
     },
   ]);
 
   const markAsResolved = (id) => {
-    setExpiredReagents((prev) => prev.filter((item) => item.id !== id));
+    setReagents((prev) => prev.filter((item) => item.id !== id));
   };
+
+  const expiringSoon = reagents.filter((item) => isExpiringSoon(item.expiresAt));
 
   return (
     <>
@@ -106,33 +140,33 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Alerta de reagentes vencidos */}
-        {expiredReagents.length > 0 && (
+        {/* Alerta de reagentes próximos do vencimento */}
+        {expiringSoon.length > 0 && (
           <Box className="w-full max-w-6xl mt-8">
-            <Card className="bg-[#ffebee] border border-[#ffcdd2] p-4 rounded-lg shadow-md">
-              <Text size="4" weight="bold" className="text-[#b71c1c] mb-4">
-                ⚠️ Reagentes vencidos encontrados
+            <Card className="bg-[#fff8e1] border border-[#ffe082] p-4 rounded-lg shadow-md">
+              <Text size="4" weight="bold" className="text-[#ff6f00] mb-4">
+                ⚠️ Reagentes próximos do vencimento
               </Text>
 
               <Flex direction="column" gap="3">
-                {expiredReagents.map((item) => (
+                {expiringSoon.map((item) => (
                   <Flex
                     key={item.id}
                     justify="between"
                     align="center"
-                    className="bg-white p-3 rounded-md border border-[#ffcdd2]"
+                    className="bg-white p-3 rounded-md border border-[#ffe082]"
                   >
                     <Box>
-                      <Text weight="bold" className="text-[#b71c1c]">
+                      <Text weight="bold" className="text-[#ff6f00]">
                         {item.name} ({item.category})
                       </Text>
                       <Text size="2" color="gray">
-                        Vencido em {item.expiredAt} - Responsável: {item.user}
+                        Vence em {getDaysUntil(item.expiresAt)} dias - Responsável: {item.user}
                       </Text>
                     </Box>
                     <button
                       onClick={() => markAsResolved(item.id)}
-                      className="px-3 py-1 text-sm bg-[#b71c1c] text-white rounded hover:bg-[#c62828] transition"
+                      className="px-3 py-1 text-sm bg-[#ff6f00] text-white rounded hover:bg-[#f57c00] transition"
                     >
                       Marcar como resolvido
                     </button>
