@@ -37,14 +37,14 @@ export default function Traceability() {
 
           <Table.Body>
             <Table.Row className="text-xl">
-              <Table.RowHeaderCell>Injeção</Table.RowHeaderCell>
+              <Table.RowHeaderCell>Seringa</Table.RowHeaderCell>
               <Table.Cell>01/04/2025</Table.Cell>
               <Table.Cell>09:00</Table.Cell>
               <Table.Cell>Marcos S.</Table.Cell>
             </Table.Row>
 
             <Table.Row className="text-xl">
-              <Table.RowHeaderCell>UREIA</Table.RowHeaderCell>
+              <Table.RowHeaderCell>Ureia</Table.RowHeaderCell>
               <Table.Cell>01/04/2025</Table.Cell>
               <Table.Cell>10:30</Table.Cell>
               <Table.Cell>Giovana B.</Table.Cell>
